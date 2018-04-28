@@ -1,2 +1,3 @@
-# tictactoe
-first Python project
+# Tic Tac Toe
+
+Learning Python part I 

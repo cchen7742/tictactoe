@@ -32,16 +32,18 @@ def print_board(board):
 def player_move(player):
 	if board_full() or is_Win(player): 
 		return
-	try: 
-		position = int(input('{}, Enter a position 1-9: '.format(player)))
-		while not position in range(1,10) or board[position-1] != EMPTY:
-			print("Invalid move")
+	while True:
+		try: 
 			position = int(input('{}, Enter a position 1-9: '.format(player)))
+			while not position in range(1,10) or board[position-1] != EMPTY:
+				print("Invalid move")
+				position = int(input('{}, Enter a position 1-9: '.format(player)))
 
-		board[position-1] = player
-		print_board(board)
-	except ValueError:
-		print("Invalid move")
+			board[position-1] = player
+			print_board(board)
+			break
+		except ValueError:
+			print("Invalid move")
 
 def is_Win(player):
 	#check rows 
@@ -59,8 +61,8 @@ def board_full():
 	return True
 
 def play_again():
-	ans = input("Would you like to play again Y/N? ")
-	if ans.upper() == "Y":
+	ans = input("Would you like to play again Y/N? ").lower()
+	if ans.startswith('y'):
 		return True
 	return False
 
